@@ -122,6 +122,8 @@
 
     const $toc = $('#toc');
     if ($toc.length > 0) {
+        $toc.addClass('column-left is-sticky'); //目录浮动代码
+
         const $mask = $('<div>');
         $mask.attr('id', 'toc-mask');
 
@@ -135,5 +137,7 @@
         $toc.on('click', toggleToc);
         $mask.on('click', toggleToc);
         $('.navbar-main .catalogue').on('click', toggleToc);
+
+        
     }
 }(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
