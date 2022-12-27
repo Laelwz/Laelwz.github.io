@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hadoop伪分布式部署踩坑 - Lealwz&#039;Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Lealwz&#039;Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Lealwz&#039;Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="在上Hadoop分布式存储课时首先让我们部署一个简单的伪分布式存储系统，但是实机安装和机房老师已经弄好的快照还是十分不同的，踩了一些坑。"><meta property="og:type" content="blog"><meta property="og:title" content="Hadoop伪分布式部署踩坑"><meta property="og:url" content="http://lealwz.github.io/posts/942/"><meta property="og:site_name" content="Lealwz&#039;Blog"><meta property="og:description" content="在上Hadoop分布式存储课时首先让我们部署一个简单的伪分布式存储系统，但是实机安装和机房老师已经弄好的快照还是十分不同的，踩了一些坑。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://lealwz.github.io/img/og_image.png"><meta property="article:published_time" content="2022-09-29T08:03:59.000Z"><meta property="article:modified_time" content="2022-12-26T08:01:26.016Z"><meta property="article:author" content="Laelwz"><meta property="article:tag" content="HADOOP"><meta property="article:tag" content="分布式"><meta property="article:tag" content="踩坑"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://lealwz.github.io/posts/942/"},"headline":"Hadoop伪分布式部署踩坑","image":["http://lealwz.github.io/img/og_image.png"],"datePublished":"2022-09-29T08:03:59.000Z","dateModified":"2022-12-26T08:01:26.016Z","author":{"@type":"Person","name":"Laelwz"},"publisher":{"@type":"Organization","name":"Lealwz'Blog","logo":{"@type":"ImageObject"}},"description":"在上Hadoop分布式存储课时首先让我们部署一个简单的伪分布式存储系统，但是实机安装和机房老师已经弄好的快照还是十分不同的，踩了一些坑。"}</script><link rel="canonical" href="http://lealwz.github.io/posts/942/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.15.2/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-QGKMC4P0GH" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-QGKMC4P0GH');</script><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lealwz'Blog" type="application/atom+xml">
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Lealwz&#039;Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Laelwz"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-7-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Hadoop伪分布式部署踩坑</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt">  写于  </i><time dateTime="2022-09-29T08:03:59.000Z" title="2022-09-29T08:03:59.000Z">2022-09-29</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check">  更新于 </i><time dateTime="2022-12-26T08:01:26.016Z" title="2022-12-26T08:01:26.016Z">2022-12-26</time></span><span class="level-item"><i class="far fa-folder-open"> </i><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span></div></div><div class="content"><blockquote>
+<p>在上Hadoop分布式存储课时首先让我们部署一个简单的伪分布式存储系统，但是实机安装和机房老师已经弄好的快照还是十分不同的，踩了一些坑。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-启动namenode时，自动关闭"><a href="#1-启动namenode时，自动关闭" class="headerlink" title="1. 启动namenode时，自动关闭"></a>1. 启动namenode时，自动关闭</h3><p>查询 log (日志) 可以发现如下错误代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop-root-namenode-localhost.localdomain.log</span><br><span class="line"></span><br><span class="line">Call From hadoop to null:0 failed on socket exception:java.net.SocketException: Unresolved address</span><br></pre></td></tr></table></figure>
+
+
+
+<p>解决方法：</p>
+<ul>
+<li>修改etc&#x2F;hadoop目录下的core-site.xml，把hdfs:&#x2F;&#x2F;hadoop:9000中的hadoop改为本机ip。</li>
+<li>或在namenode主机 hosts (主机) 将hadoop代理到本机ip。</li>
+</ul>
+<h3 id="2-namenode启动成功，关闭防火墙后无法访问50070端口"><a href="#2-namenode启动成功，关闭防火墙后无法访问50070端口" class="headerlink" title="2. namenode启动成功，关闭防火墙后无法访问50070端口"></a>2. namenode启动成功，关闭防火墙后无法访问50070端口</h3><p>解决方法：</p>
+<ul>
+<li><p>先查看端口开放情况<br>  <code>netstat -ant</code></p>
+</li>
+<li><p>50070端口显示为<br>  <code>127.0.0.1:50070</code></p>
+</li>
+<li><p>将绑定IP改为0.0.0.0，而不是本地回环IP，这样，就能够实现外网访问本机的50070端口。<br>  在hdfs-site.xml中修改添加如下代码：</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hdfs-site.xml</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.http.address&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;0.0.0.0:50070&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</div><div class="level is-mobile is-flex"><div class="article-tags is-size-7 is-uppercase"><i class="fas fa-tags has-text-grey"></i> <a class="link-muted" rel="tag" href="/tags/HADOOP/">HADOOP, </a><a class="link-muted" rel="tag" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式, </a><a class="link-muted" rel="tag" href="/tags/%E8%B8%A9%E5%9D%91/">踩坑 </a></div></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？请作者喝杯拿铁吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付鸨</span><span class="qrcode"><img src="/img/zfb.jpg" alt="支付鸨"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wx.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/posts/59339/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Linux 输入/输出重定向</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/25548/"><span class="level-item">MATLAB基于问题的整数线性规划</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="waline-thread"></div><script src="https://cdnjs.loli.net/ajax/libs/waline/1.5.4/Waline.min.js"></script><script>Waline({
+            el: '#waline-thread',
+            serverURL: "walines-laelwz.vercel.app",
+            path: window.location.pathname,
+            lang: "zh-CN",
+            visitor: false,
+            emoji: ["//unpkg.com/@waline/emojis@1.0.1/weibo"],
+            dark: "auto",
+            meta: ["nick","mail","link"],
+            requiredMeta: [],
+            login: "enable",
+            
+            pageSize: 10,
+            
+            
+            math: false,
+            copyright: true,
+            locale: {"placeholder":"若有回复，邮件提醒"},
+        });</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#1-启动namenode时，自动关闭"><span class="level-left"><span class="level-item">1. 启动namenode时，自动关闭</span></span></a></li><li><a class="level is-mobile" href="#2-namenode启动成功，关闭防火墙后无法访问50070端口"><span class="level-left"><span class="level-item">2. namenode启动成功，关闭防火墙后无法访问50070端口</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Lealwz&#039;Blog</a><p class="is-size-7"><span>&copy; 2022 Laelwz</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Laelwz"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/KaTeX/0.15.1/katex.min.css"><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.15.1/katex.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.15.1/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body><script type="text/javascript" src="/js/mathjax-config.js"></script></html>
