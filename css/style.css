@@ -11414,7 +11414,7 @@ figure.highlight.foldable div.level-left {
 }
 #toc {
   max-height: calc(100vh - 22px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .donate {
   position: relative;
