@@ -6,7 +6,7 @@
   <link href="https://lael.cc/atom.xml" rel="self"/>
   
   <link href="https://lael.cc/"/>
-  <updated>2023-08-28T09:31:02.345Z</updated>
+  <updated>2023-10-15T04:07:43.399Z</updated>
   <id>https://lael.cc/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数模比赛后</title>
+    <link href="https://lael.cc/posts/60813/"/>
+    <id>https://lael.cc/posts/60813/</id>
+    <published>2023-10-15T04:05:04.723Z</published>
+    <updated>2023-10-15T04:07:43.399Z</updated>
+    
+    <content type="html"><![CDATA[<p>当一切过去，Damocles 之剑仍存在。</p><span id="more"></span><h3 id="几乎没有备赛"><a href="#几乎没有备赛" class="headerlink" title="几乎没有备赛"></a>几乎没有备赛</h3><p>全国大学生数学建模比赛一般在九月上旬开赛，而我在 2022 年曾参与学校老师举办的集训，也参与了当年的数模比赛，取得了符合相应水平的名次。因此这个暑假的心态就变化了，变得自傲了些，<strong>游戏玩的太多，题做得太少。</strong></p><p>老师的鼓励（夸赞）确实让我有些飘飘然，然而实力可以触碰到，但也需要运气、细心以及强大的耐心才能取得成功。稳了、秒了都是我们开的玩笑，但开久了居然当真了。</p><h3 id="伤"><a href="#伤" class="headerlink" title="伤"></a>伤</h3><p>九月六日，准备从家里出发去学校参加国赛了。当天想用母亲的银行卡作为微信和支付宝的中转，给我交一笔学费，可未曾想这张卡因为太久没用，被银行限制了额度，于是我们娘俩准备去一趟银行。但母亲的噩梦由此开始。</p><p>出发前我和母亲说，我来开电瓶车吧，母亲说我不会开，于是让给她了。一路跌宕到银行，解决了限额的问题，还用积分换了四袋大米和一瓶酱油，母亲开心的小跑出银行门，在后面玩手机的我都差点跟不上。</p><p>我们停车位边上有一位女士。母亲先把两袋米放到电瓶车前端空位，然后开始想办法处理一下另外的东西怎么放，没想到还在思考，车便缓缓侧倾坠下，急于扶车，于是她坐下了，尾椎骨着地，在边上的女士的帮助下我赶紧把车挪开。后来在社区医院做了 CT，医生说没事，也没开别的检查，但开了大几百的药。母亲的忍耐没让她选择再去大医院检查一遍。</p><p>后来的四天我什么都不知道，也不想知道，尽管在比赛的时候也有预感——如果打电话给家里，那么回复应该极大概率是不好的事情了。</p><p>果不其然，比完赛的当天我迫不及待的打电话给家里，看到母亲穿着病服，我猜到了。</p><h3 id="人际"><a href="#人际" class="headerlink" title="人际"></a>人际</h3><p>比赛不是一个人的比赛。</p><p>数模作为团体赛，不是应该，而是必须要协同作战。三天内完成并校对一篇 20 多页的论文绝非易事。而我姑且作为这只小队的主心骨（有些自大，但觉得是事实），想必要承担更多的责任。</p><p>我需要团结的队友，我也需要团结队友。我们三个都是朋友，但另外两个一男一女的队友的关系，想来比我和他们，他们两个应该更为密切一些。我不好处理这些事情，只希望不会降低工作效率。</p><p>另一方面，沟通是一个团队能否提升效率的最重要的一件事情，如果沟通欠缺，那么再强大的个人成果也很难转换为赢得比赛。因此我这次比赛我引入了在线文档的协同，所有人在一个文档中进行题目的理解和标注，并对内容进行评论。现在回想起来，应该是提升了不少效率的。</p><h2 id="问题在哪里"><a href="#问题在哪里" class="headerlink" title="问题在哪里"></a>问题在哪里</h2><p>这次的比赛虽然备赛没有太尽力，但是我个人的准备做的还是比较充分的，对自己的信心也比较充足。于是在比赛中确实做到了勇往直前，一直在赶题目，在前两天基本上解决了所有题的编程，30 多个文件就是我的成果。</p><p>但还是出问题了。</p><p>第二天晚，按照惯例是通宵的，于是顶着压力和困意，喝了两瓶红牛，工作到天亮，由于基本没怎么睡，第二天自然很累，我的队友也差不多。于是我们第三天的白天宕机次数变多了，下午甚至开始闲聊，<strong>不知是什么让我们自信地认为时间太够了</strong>，也许人在忙碌后的思维迟滞中无法感受到时间这么快的溜走了。</p><p>显然的，在最后时间不够用了，于是我们这些昏昏沉沉的脑子，果然在校对文章上出了些差错。<strong>三个人，电子版修订无数遍，纸质版打印了三遍</strong>，愣是没有人注意到题目没写，就是论文的题目，摘要上面那个醒目的一号标题。</p><p>于是在同学和老师的一声声“稳了”中，我错失了国奖。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>现在过去一个多月了，每每夜晚眯上眼睛，我总会像慢动作一般回想起母亲在我面前坐倒，电瓶车缓缓落下，以及我提交比赛论文的那个瞬间。</p><p>我想还有好多要改正，还有好多要学习。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;当一切过去，Damocles 之剑仍存在。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生活" scheme="https://lael.cc/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="数学建模" scheme="https://lael.cc/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
+    
+    <category term="受伤" scheme="https://lael.cc/tags/%E5%8F%97%E4%BC%A4/"/>
+    
+    <category term="复盘" scheme="https://lael.cc/tags/%E5%A4%8D%E7%9B%98/"/>
+    
+    <category term="思考" scheme="https://lael.cc/tags/%E6%80%9D%E8%80%83/"/>
+    
+  </entry>
   
   <entry>
     <title>小米平板5 Windows10 痛点解决 ＆ 使用技巧</title>
@@ -159,15 +186,15 @@
     <category term="生活" scheme="https://lael.cc/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-    <category term="月记" scheme="https://lael.cc/tags/%E6%9C%88%E8%AE%B0/"/>
+    <category term="复盘" scheme="https://lael.cc/tags/%E5%A4%8D%E7%9B%98/"/>
     
     <category term="思考" scheme="https://lael.cc/tags/%E6%80%9D%E8%80%83/"/>
+    
+    <category term="月记" scheme="https://lael.cc/tags/%E6%9C%88%E8%AE%B0/"/>
     
     <category term="健身" scheme="https://lael.cc/tags/%E5%81%A5%E8%BA%AB/"/>
     
     <category term="笔记" scheme="https://lael.cc/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="复盘" scheme="https://lael.cc/tags/%E5%A4%8D%E7%9B%98/"/>
     
   </entry>
   
